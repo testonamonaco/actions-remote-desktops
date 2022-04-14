@@ -17,9 +17,6 @@ sudo systemctl disable lightdm.service
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg --install google-chrome-stable_current_amd64.deb
 sudo apt install --assume-yes --fix-broken
-wget https://media.codeweavers.com/pub/crossover/cxlinux/demo/crossover_20.0.2-1.deb
-sudo dpkg -i crossover_20.0.2-1.deb
-sudo apt install --assume-yes --fix-broken
 sudo apt install nautilus nano -y 
 sudo apt -y install firefox
 printf "$g$b    Installing Desktop Environment $endc$enda" >&2
