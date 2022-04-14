@@ -18,7 +18,12 @@ jobs:
         choco install ngrok
         ngrok authtoken $Env:NGROK_AUTH_TOKEN
     - name: Setting Bing Wallpaper
-      run: irm "bing.com$((irm "bing.com/HPImageArchive.aspx?format=js&mkt=en-IN&n=1").images[0].url)" -OutFile D:\a\bingwallpaper.jpg
+      run: |
+        irm "bing.com$((irm "bing.com/HPImageArchive.aspx?format=js&mkt=en-IN&n=1").images[0].url)" -OutFile D:\a\bingwallpaper.jpg
+        reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d D:\a\bingwallpaper.jpg /f
+        rundll32.exe user32.dll,UpdatePerUserSystemParameters
+        taskkill /f /im explorer.exe
+        start explorer.exe
     - name: Activating RDP access.
       run: | 
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
