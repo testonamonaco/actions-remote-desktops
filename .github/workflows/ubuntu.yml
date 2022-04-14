@@ -3,32 +3,33 @@
 name: ubuntu
 
 # Controls when the workflow will run
-on: workflow_dispatch
-
+on:
+  workflow_dispatch:
+   inputs:
+     auth:
+        description: 'GRDP Authorization Code'
+        default: 'paste your code here'
+        required: true
+defaults:
+  run:
+    shell: bash
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v3
-    - name: Downloading Ngrok.
+    - name: Install
       run: |
-        wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip --output-file ngrok.zip
-    - name: Extracting Ngrok Files.
-      run: unzip ngrok.zip
-    - name: Connecting to your Ngrok account.
-      env:
-        NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-        run: .\ngrok authtoken $NGROK_AUTH_TOKEN
-    - name: Activating RDP access.
-      run: | 
-        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
-        Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
-        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
-    - name: Creating Tunnel.
-      run: ./ngrok tcp 3389
+         wget https://raw.githubusercontent.com/meelement/RDP-SERVER-EDITED-BY-HIT/master/RDP.sh
+         sudo chmod +x ./RDP.sh
+         sudo ./RDP.sh
+    - name: Run RD command
+      run: su - HIT -c ${{ github.event.inputs.auth }}
+    - name: Create SSH Access
+      uses: mxschmitt/action-tmate@v3
