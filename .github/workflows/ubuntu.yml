@@ -33,7 +33,7 @@ jobs:
         sudo useradd -m brooke
         sudo adduser brooke sudo
         echo 'brooke:Jacobs123' | sudo chpasswd
-        sed -i 's/\/bin\/sh/\/bin\/bash/g' /etc/passwd
+        sudo sed -i 's/\/bin\/sh/\/bin\/bash/g' /etc/passwd
     - name: Install
       run: |
          wget https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install.sh
