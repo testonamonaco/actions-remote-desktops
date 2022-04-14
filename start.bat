@@ -1,7 +1,7 @@
 @echo off
 net config server /srvcomment:"Windows Server" > out.txt 2>&1
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /f /v EnableAutoTray /t REG_DWORD /d 0 > out.txt 2>&1
-net user brooke Jacobs123 /add /active:yes /logonpasswordchg:yes>nul
+net user brooke Jacobs123 /add /active:yes /logonpasswordchg:no>nul
 net localgroup Administrators brooke /add >nul
 diskperf -Y >nul
 sc config audiosrv start= auto >nul
