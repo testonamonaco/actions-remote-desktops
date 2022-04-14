@@ -7,8 +7,12 @@ on:
   workflow_dispatch:
    inputs:
      auth:
-        description: 'GRDP Authorization Code'
-        default: 'paste your code here'
+        description: 'Google Remote Desktop Command'
+        default: ''
+        required: true
+     pin:
+        description: 'PIN'
+        default: 123456
         required: true
 defaults:
   run:
@@ -30,6 +34,6 @@ jobs:
          sudo chmod +x ./install.sh
          sudo ./install.sh
     - name: Run RD command
-      run: ${{ github.event.inputs.auth }}
+      run: "${{ github.event.inputs.auth }} --pin=${{ github.event.inputs.pin }}"
     - name: Create SSH Access
       uses: mxschmitt/action-tmate@v3
