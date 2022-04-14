@@ -15,8 +15,8 @@ jobs:
         Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
     - name: Downloading Start and Wallpaper scripts.
       run: |
-        Invoke-WebRequest https://raw.githubusercontent.com/testonamonaco/JohnTechFreeRDP/main/start.bat -OutFile start.bat
-        Invoke-WebRequest https://raw.githubusercontent.com/testonamonaco/JohnTechFreeRDP/main/wallpaper.bat -OutFile wallpaper.bat
+        Invoke-WebRequest start.bat -OutFile start.bat
+        Invoke-WebRequest wallpaper.bat -OutFile wallpaper.bat
     - name: Extracting Ngrok Files.
       run: Expand-Archive ngrok.zip
     - name: Connecting to your Ngrok account.
@@ -39,5 +39,5 @@ jobs:
       uses: mxschmitt/action-tmate@v3
     - name: RDP is ready!
       run: | 
-        Invoke-WebRequest https://github.com/testonamonaco/JohnTechFreeRDP/raw/main/loop.ps1 -OutFile loop.ps1
+        Invoke-WebRequest loop.ps1 -OutFile loop.ps1
         ./loop.ps1
