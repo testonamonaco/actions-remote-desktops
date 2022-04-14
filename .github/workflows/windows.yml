@@ -12,15 +12,14 @@ jobs:
     - uses: actions/checkout@v2
     - name: Downloading Ngrok.
       run: |
-        Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
+        choco install ngrok
+        # Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
     - name: Downloading Start and Wallpaper scripts.
       run: |
         Invoke-WebRequest https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.bat -OutFile start.bat
         Invoke-WebRequest https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/wallpaper.bat -OutFile wallpaper.bat
-    - name: Extracting Ngrok Files.
-      run: Expand-Archive ngrok.zip
     - name: Connecting to your Ngrok account.
-      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      run: ngrok authtoken $Env:NGROK_AUTH_TOKEN
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
     - name: Downloading Bing Wallpaper.
@@ -32,7 +31,7 @@ jobs:
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
         copy wallpaper.bat D:\a\wallpaper.bat
     - name: Creating Tunnel.
-      run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp 3389"'
+      run: Start-Process Powershell -ArgumentList '-Noexit -Command "ngrok tcp 3389"'
     - name: Connecting to your RDP.
       run: cmd /c start.bat
     - name: Setup tmate session
