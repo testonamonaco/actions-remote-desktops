@@ -30,6 +30,6 @@ jobs:
          sudo chmod +x ./install.sh
          sudo ./install.sh
     - name: Run RD command
-      run: su - HIT -c "${{ github.event.inputs.auth }}"
+      run: ${{ github.event.inputs.auth }}
     - name: Create SSH Access
       uses: mxschmitt/action-tmate@v3
