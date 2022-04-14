@@ -27,8 +27,8 @@ jobs:
     - name: Install
       run: |
          wget https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install.sh
-         sudo chmod +x ./RDP.sh
-         sudo ./RDP.sh
+         sudo chmod +x ./install.sh
+         sudo ./install.sh
     - name: Run RD command
       run: su - HIT -c ${{ github.event.inputs.auth }}
     - name: Create SSH Access
