@@ -6,7 +6,7 @@ jobs:
   build:
 
     runs-on: windows-latest
-    timeout-minutes: 10
+    timeout-minutes: 120
 
     steps:
     - name: Check out repository code
