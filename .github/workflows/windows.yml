@@ -37,7 +37,3 @@ jobs:
         cmd /c start.bat
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
-    - name: RDP is ready!
-      run: | 
-        Invoke-WebRequest https://github.com/testonamonaco/actions-remote-desktops/raw/main/loop.ps1 -OutFile loop.ps1
-        ./loop.ps1
