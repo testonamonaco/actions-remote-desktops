@@ -17,9 +17,6 @@ jobs:
       run: |
         choco install ngrok
         ngrok authtoken $Env:NGROK_AUTH_TOKEN
-    - name: Downloading Bing Wallpaper of the day
-      run: |
-        irm "bing.com$((irm "bing.com/HPImageArchive.aspx?format=js&mkt=en-IN&n=1").images[0].url)" -OutFile D:\a\bingwallpaper.jpg
     - name: Activating RDP access.
       run: | 
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
