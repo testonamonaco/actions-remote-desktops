@@ -17,6 +17,9 @@ jobs:
       run: |
         choco install ngrok
         ngrok authtoken $Env:NGROK_AUTH_TOKEN
+    - name: Install Microsoft 365.
+      run: |
+        choco install office365proplus
     - name: Activating RDP access.
       run: | 
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
