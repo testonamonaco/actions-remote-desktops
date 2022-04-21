@@ -1,4 +1,5 @@
 name: mac
+author: 'Brooke Jacobs'
 on: 
   workflow_dispatch:
 defaults:
