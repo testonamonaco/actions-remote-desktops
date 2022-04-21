@@ -12,11 +12,12 @@ on:
         required: true
      pin:
         description: 'PIN'
-        default: 123456
+        default: '123456'
         required: true
-      chrome:
+     chrome:
         description: |
-          [boolean] Choose on
+          [boolean] 'Choose one'
+        default: true
         required: false
 defaults:
   run:
