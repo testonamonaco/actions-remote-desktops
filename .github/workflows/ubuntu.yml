@@ -14,6 +14,10 @@ on:
         description: 'PIN'
         default: 123456
         required: true
+      chrome:
+        description: |
+          [boolean] Choose on
+        required: false
 defaults:
   run:
     shell: bash
