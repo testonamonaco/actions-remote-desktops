@@ -1,8 +1,4 @@
 name: mac
-author: 'Brooke Jacobs'
-branding:
-  icon: 'award'  
-  color: 'green'
 on: 
   workflow_dispatch:
 defaults:
@@ -12,6 +8,7 @@ defaults:
 jobs:
   build:
     runs-on: macos-10.15
+    name: 'Set up a MacOS Machine'
     steps:
     - uses: actions/checkout@v2
     - name: Setting the environment up.
