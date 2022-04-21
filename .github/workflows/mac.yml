@@ -1,5 +1,8 @@
 name: mac
 author: 'Brooke Jacobs'
+branding:
+  icon: 'award'  
+  color: 'green'
 on: 
   workflow_dispatch:
 defaults:
