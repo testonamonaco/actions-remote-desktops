@@ -16,7 +16,7 @@ on:
         required: true
      chrome:
         description: |
-          [boolean] 'Choose one'
+          [boolean] Choose one
         default: true
         required: false
 defaults:
