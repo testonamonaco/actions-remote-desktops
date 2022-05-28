@@ -1,4 +1,4 @@
-name: WinServer
+name: WinServerNoOffice
 
 on: workflow_dispatch
 
