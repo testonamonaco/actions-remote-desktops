@@ -17,7 +17,7 @@ jobs:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
       run: |
         choco install ngrok
-        ngrok authtoken $Env:NGROK_AUTH_TOKEN
+        ngrok authtoken $Env:NGROK_AUTH_TOKEN_WITHOFFICE
     - name: Install Microsoft 365.
       run: |
         choco install office365proplus
