@@ -4,7 +4,6 @@ on: workflow_dispatch
 
 jobs:
   build:
-
     runs-on: windows-latest
     name: 'Set up a Windows machine'
     timeout-minutes: 9999
