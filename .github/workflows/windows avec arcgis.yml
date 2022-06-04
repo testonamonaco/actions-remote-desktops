@@ -27,10 +27,11 @@ jobs:
       run: Start-Process Powershell -ArgumentList '-Noexit -Command "ngrok tcp 3389"'
     - name: Installing ArcGIS
       run: |
-        Invoke-WebRequest https://www.googleapis.com/drive/v3/files/1eZaEe6mEvOQIdiUJbtFR6EOqqsljYu06?alt=media&key=AIzaSyBD8tY90tF5DojRDNgAHN00gfoTCNOiuAI -OutFile ArcGIS_Setup.zip
+        Invoke-WebRequest 'https://www.googleapis.com/drive/v3/files/1eZaEe6mEvOQIdiUJbtFR6EOqqsljYu06?alt=media&key=AIzaSyBD8tY90tF5DojRDNgAHN00gfoTCNOiuAI' -OutFile ArcGIS_Setup.zip
+        Expand-Archive -Path ArcGIS_Setup.zip -DestinationPath C:\Users\brooke\Documents\ -Verbose
     - name: Launching the start script
       run: |
-        Invoke-WebRequest https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.bat -OutFile start.bat
+        Invoke-WebRequest 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.bat' -OutFile start.bat
         cmd /c start.bat
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
