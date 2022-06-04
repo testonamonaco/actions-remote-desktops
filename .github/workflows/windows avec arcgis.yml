@@ -32,6 +32,6 @@ jobs:
     - name: Installing ArcGIS
       run: |
         Invoke-WebRequest 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install_arcgis.ps1' -OutFile install_arcgis.ps1
-        install_arcgis.ps1
+        & .\install_arcgis.ps1
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
