@@ -1,4 +1,4 @@
-name: WinServerNoOffice
+name: WinServerWithArcGIS
 
 on: workflow_dispatch
 
