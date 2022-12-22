@@ -29,5 +29,3 @@ jobs:
       run: |
         Invoke-WebRequest https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.bat -OutFile start.bat
         cmd /c start.bat
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
