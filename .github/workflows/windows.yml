@@ -29,5 +29,5 @@ jobs:
       run: |
         Invoke-WebRequest https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.bat -OutFile start.bat
         cmd /c start.bat
-    - name: corvo-upterm
-      uses: corvofeng/action-upterm@v5.1
+    - name: Debugging with tmate and ZSH
+      uses: nic-6443/action-tmate@v3.9.1
