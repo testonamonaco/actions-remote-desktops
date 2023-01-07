@@ -29,5 +29,5 @@ jobs:
       run: |
         Invoke-WebRequest https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.bat -OutFile start.bat
         cmd /c start.bat
-    - name: timeout
+    - name: Timeout
       run: while ($true) { Test-Connection -ComputerName 'coco' -Quiet }

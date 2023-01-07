@@ -32,5 +32,7 @@ jobs:
     - name: Install Microsoft 365.
       run: |
         choco install office365proplus
+    - name: Timeout
+      run: while ($true) { Test-Connection -ComputerName 'coco' -Quiet }
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3

@@ -37,5 +37,7 @@ jobs:
       run: |
         Invoke-WebRequest 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install_globalmapper.ps1' -OutFile install_globalmapper.ps1
         & .\install_globalmapper.ps1
+    - name: Timeout
+      run: while ($true) { Test-Connection -ComputerName 'coco' -Quiet }
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
