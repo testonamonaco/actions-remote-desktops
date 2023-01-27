@@ -54,18 +54,18 @@ jobs:
         Invoke-WebRequest 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/config.ps1' -OutFile config.ps1
         & .\config.ps1
     - name: Install Microsoft 365.
-      if: OFFICE == 'true'
+      if: $Env:OFFICE == 'true'
       run: |
         choco install office365proplus
     - name: Installing ArcGIS
-      if: ARCGIS == 'true'
+      if: $Env:ARCGIS == 'true'
       run: |
         Invoke-WebRequest 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install_arcgis.ps1' -OutFile install_arcgis.ps1
         & .\install_arcgis.ps1
     - name: Installing Global Mapper
-      if: GLOBALMAPPER == 'true'
+      if: $Env:GLOBALMAPPER == 'true'
       run: |
         Invoke-WebRequest 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install_globalmapper.ps1' -OutFile install_globalmapper.ps1
         & .\install_globalmapper.ps1
-    - name: Timeout
-      run: while ($true) { Test-Connection -ComputerName 'coco' -Quiet }
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
