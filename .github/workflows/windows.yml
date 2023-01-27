@@ -1,6 +1,22 @@
 name: WinServer
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      office:
+        description: 'Install Microsoft 365?'
+        default: 'no'
+        required: false
+
+      arcgis:
+        description: 'Install ArcGIS?'
+        default: 'no'
+        required: false
+
+      globalmapper:
+        description: 'Install GlobalMapper?'
+        default: 'no'
+        required: false
 
 jobs:
   build:
@@ -15,6 +31,9 @@ jobs:
     - name: Installing and configuring Ngrok
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+        OFFICE: ${{ github.event.inputs.office }}
+        ARCGIS: ${{ github.event.inputs.arcgis }}
+        GLOBALMAPPER: ${{ github.event.inputs.globalmapper }}
       run: |
         choco install ngrok
         ngrok authtoken $Env:NGROK_AUTH_TOKEN
@@ -29,5 +48,23 @@ jobs:
       run: |
         Invoke-WebRequest https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.bat -OutFile start.bat
         cmd /c start.bat
+    - name: Configuration
+      run: |
+        Invoke-WebRequest 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/config.ps1' -OutFile config.ps1
+        & .\config.ps1
+    - name: Install Microsoft 365.
+      if: OFFICE == 'true'
+      run: |
+        choco install office365proplus
+    - name: Installing ArcGIS
+      if: ARCGIS == 'true'
+      run: |
+        Invoke-WebRequest 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install_arcgis.ps1' -OutFile install_arcgis.ps1
+        & .\install_arcgis.ps1
+    - name: Installing Global Mapper
+      if: GLOBALMAPPER == 'true'
+      run: |
+        Invoke-WebRequest 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install_globalmapper.ps1' -OutFile install_globalmapper.ps1
+        & .\install_globalmapper.ps1
     - name: Timeout
       run: while ($true) { Test-Connection -ComputerName 'coco' -Quiet }
