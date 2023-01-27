@@ -1,10 +1,15 @@
 @echo off
 net config server /srvcomment:"Windows Server" > out.txt 2 >&1
 net user brooke Jacobs123 /add /active:yes /logonpasswordchg:no > nul
-net localgroup Administrators brooke /add > nul
-diskperf -Y > nul
-sc config audiosrv start= auto > nul
-sc start audiosrv > nul
+:: $Password = Read-Host -AsSecureString
+:: New-LocalUser "brooke" -Password Jacobs123
+:: net localgroup Administrators brooke /add > nul
+ps Add-LocalGroupMember -Group "Administrators" -Member "brooke"
+diskperf -y > nul
+:: sc config audiosrv start= auto > nul
+ps Set-Service -Name audiosrv -StartupType Automatic
+:: sc start audiosrv > nul
+ps Start-Service -Name audiosrv
 icacls C:\Windows\Temp /grant brooke:F > nul
 icacls C:\Windows\installer /grant brooke:F > nul
 echo IP:
