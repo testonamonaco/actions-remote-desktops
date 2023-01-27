@@ -24,10 +24,6 @@ jobs:
     runs-on: windows-latest
     name: 'Set up a Windows machine'
     timeout-minutes: 9999
-    env:
-      OFFICE: ${{ github.event.inputs.office }}
-      ARCGIS: ${{ github.event.inputs.arcgis }}
-      GLOBALMAPPER: ${{ github.event.inputs.globalmapper }}
 
     steps:
     - name: Check out repository code
@@ -54,16 +50,16 @@ jobs:
         Invoke-WebRequest 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/config.ps1' -OutFile config.ps1
         & .\config.ps1
     - name: Install Microsoft 365.
-      if: $Env:OFFICE == 'true'
+      if: ${{ github.event.inputs.office }} == 'true'
       run: |
         choco install office365proplus
     - name: Installing ArcGIS
-      if: $Env:ARCGIS == 'true'
+      if: ${{ github.event.inputs.arcgis }} == 'true'
       run: |
         Invoke-WebRequest 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install_arcgis.ps1' -OutFile install_arcgis.ps1
         & .\install_arcgis.ps1
     - name: Installing Global Mapper
-      if: $Env:GLOBALMAPPER == 'true'
+      if: ${{ github.event.inputs.globalmapper }} == 'true'
       run: |
         Invoke-WebRequest 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install_globalmapper.ps1' -OutFile install_globalmapper.ps1
         & .\install_globalmapper.ps1
