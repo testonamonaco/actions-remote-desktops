@@ -50,16 +50,16 @@ jobs:
         Invoke-WebRequest 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/config.ps1' -OutFile config.ps1
         & .\config.ps1
     - name: Install Microsoft 365.
-      if: ${{ github.event.inputs.office }} == 'true'
+      if: ${{ github.event.inputs.office == 'true' }}
       run: |
         choco install office365proplus
     - name: Installing ArcGIS
-      if: ${{ github.event.inputs.arcgis }} == 'true'
+      if: ${{ github.event.inputs.arcgis == 'true' }}
       run: |
         Invoke-WebRequest 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install_arcgis.ps1' -OutFile install_arcgis.ps1
         & .\install_arcgis.ps1
     - name: Installing Global Mapper
-      if: ${{ github.event.inputs.globalmapper }} == 'true'
+      if: ${{ github.event.inputs.globalmapper == 'true' }}
       run: |
         Invoke-WebRequest 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install_globalmapper.ps1' -OutFile install_globalmapper.ps1
         & .\install_globalmapper.ps1
