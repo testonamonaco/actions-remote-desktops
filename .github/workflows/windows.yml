@@ -7,6 +7,13 @@ on:
         default: false
         required: false
         type: boolean
+
+      qgis:
+        description: 'Install QGIS?'
+        default: false
+        required: false
+        type: boolean
+
       arcgis:
         description: 'Install ArcGIS?'
         default: false
@@ -60,6 +67,11 @@ jobs:
       if: ${{ github.event.inputs.office == true }}
       run: |
         choco install office365proplus
+
+    - name: Install QGIS.
+      if: ${{ github.event.inputs.qgis == true }}
+      run: |
+        choco install qgis
 
     - name: Installing ArcGIS
       if: ${{ github.event.inputs.arcgis == true }}
