@@ -10,10 +10,10 @@ diskperf -y > nul
 powershell -command " Set-Service -Name 'audiosrv' -StartupType Automatic "
 :: sc start audiosrv > nul
 powershell -command " Start-Service -Name 'audiosrv' "
-icacls C:\Windows\Temp /grant brooke:F > nul
-:: Set-Acl -Path "C:\Windows\Temp"
-icacls C:\Windows\installer /grant brooke:F > nul
-:: Set-Acl -Path "C:\Windows\installer"
+:: icacls C:\Windows\Temp /grant brooke:F > nul
+powershell Add-Acl -Path "C:\Windows\Temp" -Account "brooke" -AccessRights "FullControl"
+:: icacls C:\Windows\installer /grant brooke:F > nul
+powershell Add-Acl -Path "C:\Windows\installer" -Account "brooke" -AccessRights "FullControl"
 echo IP:
 tasklist | find /i "ngrok.exe" > nul && curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url || echo "Failed to retreive NGROK authtoken - check again your authtoken"
 ping -n 10 127.0.0.1 > nul
