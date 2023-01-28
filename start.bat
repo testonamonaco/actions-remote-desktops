@@ -1,7 +1,7 @@
 @echo off
 :: net config server /hidden:yes /srvcomment:"Windows Server" > out.txt 2 >&1
 :: net user brooke Jacobs123 /add /active:yes /logonpasswordchg:no > nul
-powershell -command " $password = ConvertTo-SecureString 'Jacobs123' -AsPlainText -Force "
+powershell -command " $Password = ConvertTo-SecureString 'Jacobs123' -AsPlainText -Force "
 powershell -command " New-LocalUser 'brooke' -Password $Password "
 :: net localgroup Administrators brooke /add > nul
 powershell -command " Add-LocalGroupMember -Group 'Administrators' -Member 'brooke' "
