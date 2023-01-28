@@ -41,7 +41,7 @@ jobs:
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
       run: |
-        choco install ngrok
+        choco install ngrok --yes
         ngrok authtoken $Env:NGROK_AUTH_TOKEN
 
     - name: Activating RDP access.
@@ -66,12 +66,12 @@ jobs:
     - name: Install Microsoft 365.
       if: ${{ github.event.inputs.office == true }}
       run: |
-        choco install office365proplus
+        choco install office365proplus --yes
 
     - name: Install QGIS.
       if: ${{ github.event.inputs.qgis == true }}
       run: |
-        choco install qgis
+        choco install qgis --yes
 
     - name: Installing ArcGIS
       if: ${{ github.event.inputs.arcgis == true }}
