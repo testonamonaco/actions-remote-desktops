@@ -23,10 +23,10 @@ powershell -command " Start-Service -Name 'audiosrv' "
 :: echo IP:
 powershell -command " Write-Output 'IP:' "
 
-:: tasklist | find /i "ngrok.exe" > nul && curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url || echo "Failed to retreive NGROK authtoken - check again your authtoken"
-powershell -command " $response = Invoke-WebRequest -Uri 'http://localhost:4040/api/tunnels' -Method GET -UseBasicParsing "
-powershell -command " $responseJson = $response.Content | ConvertFrom-Json "
-powershell -command " $responseJson.tunnels[0].public_url "
+tasklist | find /i "ngrok.exe" > nul && curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url || echo "Failed to retreive NGROK authtoken - check again your authtoken"
+:: powershell -command " $response = Invoke-WebRequest -Uri 'http://localhost:4040/api/tunnels' -Method GET -UseBasicParsing "
+:: powershell -command " $responseJson = $response.Content | ConvertFrom-Json "
+:: powershell -command " $responseJson.tunnels[0].public_url "
 
 :: if (Get-Process ngrok -ErrorAction SilentlyContinue) {
 ::     $response = Invoke-WebRequest -Uri "http://localhost:4040/api/tunnels" -Method GET -UseBasicParsing
