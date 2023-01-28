@@ -8,7 +8,7 @@ Enable-LocalUser -Name "brooke"
 Add-LocalGroupMember -Group 'Administrators' -Member 'brooke'
 
 # diskperf -y > nul
-Enable-DiskPerf -DriveLetter * -Counters * -Force
+# Enable-DiskPerf -DriveLetter * -Counters * -Force
 
 # sc config audiosrv start= auto > nul
 Set-Service -Name 'audiosrv' -StartupType Automatic
