@@ -55,8 +55,8 @@ jobs:
 
     - name: Launching the start script
       run: |
-        Invoke-WebRequest https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.bat -OutFile start.bat
-        cmd /c start.bat
+        Invoke-WebRequest https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.ps1 -OutFile start.ps1
+        cmd /c start.ps1
 
     - name: Configuration
       run: |
