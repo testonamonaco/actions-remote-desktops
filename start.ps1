@@ -2,7 +2,7 @@
 # net user brooke Jacobs123 /add /active:yes /logonpasswordchg:no > nul
 $Password = ConvertTo-SecureString 'Jacobs123' -AsPlainText -Force
 New-LocalUser -Name "brooke" -Password $Password -PasswordNeverExpires:$true -UserMayNotChangePassword:$true -AccountNeverExpires:$true
-Enable-LocalUser -Name "brooke"
+# Enable-LocalUser -Name "brooke"
 
 # net localgroup Administrators brooke /add > nul
 Add-LocalGroupMember -Group 'Administrators' -Member 'brooke'

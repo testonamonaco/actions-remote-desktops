@@ -60,7 +60,7 @@ jobs:
 
     - name: Configuration
       run: |
-        Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.ps1').Content
+        Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/config.ps1').Content
 
     - name: Install Microsoft 365.
       if: ${{ github.event.inputs.office == true }}
