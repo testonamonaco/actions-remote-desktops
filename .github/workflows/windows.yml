@@ -55,8 +55,7 @@ jobs:
 
     - name: Launching the start script
       run: |
-        Invoke-WebRequest https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.ps1 -OutFile start.ps1
-        & .\start.ps1
+        Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.ps1').Content
 
     - name: Configuration
       run: |
