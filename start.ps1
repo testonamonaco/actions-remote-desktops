@@ -1,11 +1,14 @@
 # net config server /hidden:yes /srvcomment:"Windows Server" > out.txt 2 >&1
-net user brooke Jacobs123 /add /active:yes /logonpasswordchg:no > nul
-# $Password = ConvertTo-SecureString 'Jacobs123' -AsPlainText -Force
-# New-LocalUser 'brooke' -Password $Password
+# net user brooke Jacobs123 /add /active:yes /logonpasswordchg:no > nul
+$Password = ConvertTo-SecureString 'Jacobs123' -AsPlainText -Force
+New-LocalUser -Name "brooke" -Password $Password -PasswordNeverExpires:$true -UserMayNotChangePassword:$true -AccountNeverExpires:$true
+Enable-LocalUser -Name "brooke"
+
 # net localgroup Administrators brooke /add > nul
 Add-LocalGroupMember -Group 'Administrators' -Member 'brooke'
 
-diskperf -y > nul
+# diskperf -y > nul
+Enable-DiskPerf -DriveLetter * -Counters * -Force
 
 # sc config audiosrv start= auto > nul
 Set-Service -Name 'audiosrv' -StartupType Automatic
