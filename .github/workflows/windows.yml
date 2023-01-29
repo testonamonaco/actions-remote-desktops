@@ -1,4 +1,4 @@
-name: WinServer
+name: Windows Server 2022 Remote Virtual Machine
 on:
   workflow_dispatch:
     inputs:
@@ -60,7 +60,7 @@ jobs:
 
     - name: Launching the start script
       run: |
-        Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.ps1').Content
+        Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.bat').Content
 
     - name: Configuration
       run: |

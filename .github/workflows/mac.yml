@@ -1,4 +1,4 @@
-name: mac
+name: Mac Remote Virtual Machine
 on: 
   workflow_dispatch:
 defaults:
