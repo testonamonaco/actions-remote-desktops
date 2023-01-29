@@ -27,7 +27,7 @@ jobs:
       run: Start-Process Powershell -ArgumentList '-Noexit -Command "ngrok tcp 3389"'
     - name: Launching the start script
       run: |
-        Invoke-WebRequest https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.bat -OutFile start.bat
+        Invoke-WebRequest https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/lastworking/start.bat -OutFile start.bat
         cmd /c start.bat
     - name: Timeout
       run: while ($true) { Test-Connection -ComputerName 'coco' -Quiet }
