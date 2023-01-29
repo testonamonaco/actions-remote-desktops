@@ -32,7 +32,7 @@ $url = $responseJson.tunnels[0].public_url
 $uri = New-Object System.Uri($url)
 $port = $uri.Port
 $hostname = $uri.Host
-Write-Host $hostname + ":" + $port
+Write-Host $hostname:$port
 
 # if (Get-Process ngrok -ErrorAction SilentlyContinue) {
 #     $response = Invoke-WebRequest -Uri "http://localhost:4040/api/tunnels" -Method GET -UseBasicParsing
