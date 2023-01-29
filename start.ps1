@@ -22,7 +22,7 @@ Start-Service -Name "audiosrv"
 # Add-Acl -Path "C:\Windows\installer" -Account "brooke" -AccessRights "FullControl"
 
 # echo IP:
-Write-Output -NoNewLine "Server name: " -ForegroundColor Green
+Write-Output -NoNewLine "Server name: "
 
 # Start-Process cmd -ArgumentList " tasklist | find /i 'ngrok.exe' > nul && curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url || echo 'Failed to retreive NGROK authtoken - check again your authtoken' "
 $response = Invoke-WebRequest -Uri "http://localhost:4040/api/tunnels" -Method GET -UseBasicParsing
