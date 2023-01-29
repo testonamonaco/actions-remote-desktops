@@ -36,12 +36,10 @@ jobs:
     steps:
     - name: Check out repository code
       uses: actions/checkout@v3
-      env:
-        COLLAPSED: false
+
     - name: Installing and configuring Ngrok
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-        COLLAPSED: false
       run: |
         choco install ngrok | Out-Null
         ngrok authtoken $Env:NGROK_AUTH_TOKEN
@@ -51,49 +49,40 @@ jobs:
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
         Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
-      env:
-        COLLAPSED: false
+
     - name: Starting Ngrok tunnel
       run: Start-Process Powershell -ArgumentList '-Noexit -Command "ngrok tcp 3389"'
-      env:
-        COLLAPSED: false
+
 
     - name: Launching the start script
       run: |
-        Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.bat').Content
+        Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.ps1').Content
 
     - name: Configuration
       run: |
         Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/config.ps1').Content
-      env:
-        COLLAPSED: false
+
 
     - name: Install Microsoft 365.
       if: ${{ github.event.inputs.office == true }}
       run: |
         choco install office365proplus | Out-Null
-      env:
-        COLLAPSED: false
+
 
     - name: Install QGIS.
       if: ${{ github.event.inputs.qgis == true }}
       run: |
         choco install qgis | Out-Null
-      env:
-        COLLAPSED: false
+
     - name: Installing ArcGIS
       if: ${{ github.event.inputs.arcgis == true }}
       run: |
         Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install_arcgis.ps1').Content
-      env:
-        COLLAPSED: false
+
     - name: Installing Global Mapper
       if: ${{ github.event.inputs.globalmapper == true }}
       run: |
         Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install_globalmapper.ps1').Content
-      env:
-        COLLAPSED: false
+
     - name: Setup TMATE session
       uses: mxschmitt/action-tmate@v3
-      env:
-        COLLAPSED: false
