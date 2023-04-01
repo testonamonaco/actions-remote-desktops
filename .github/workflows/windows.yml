@@ -66,7 +66,7 @@ jobs:
     - name: Install Microsoft 365.
       if: ${{ github.event.inputs.office == true }}
       run: |
-        choco install office365proplus | Out-Null
+        choco install office365business | Out-Null
 
 
     - name: Install QGIS.
