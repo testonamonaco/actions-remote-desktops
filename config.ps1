@@ -1,3 +1,6 @@
+# Create the necessary registry keys
+New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Force | Out-Null
+
 # App Level Dark Mode for all users
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name AppsUseLightTheme -Value 0 -Type Dword -Force
 # System Level Dark Mode for all users
