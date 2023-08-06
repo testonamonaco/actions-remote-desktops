@@ -99,3 +99,4 @@ jobs:
 
     - name: Setup TMATE session
       uses: mxschmitt/action-tmate@v3
+      continue-on-error: true
