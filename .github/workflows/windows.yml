@@ -45,7 +45,7 @@ jobs:
         ngrok authtoken $Env:NGROK_AUTH_TOKEN
 
     - name: Activating RDP access.
-      run: | 
+      run: |
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
         Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
@@ -64,23 +64,23 @@ jobs:
 
 
     - name: Install Microsoft 365.
-      if: ${{ github.event.inputs.office == true }}
+      if: ${{ github.event.inputs.office == 'true' }}
       run: |
         choco install office365business | Out-Null
 
 
     - name: Install QGIS.
-      if: ${{ github.event.inputs.qgis == true }}
+      if: ${{ github.event.inputs.qgis == 'true' }}
       run: |
         choco install qgis | Out-Null
 
     - name: Installing ArcGIS
-      if: ${{ github.event.inputs.arcgis == true }}
+      if: ${{ github.event.inputs.arcgis == 'true' }}
       run: |
         Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install_arcgis.ps1').Content
 
     - name: Installing Global Mapper
-      if: ${{ github.event.inputs.globalmapper == true }}
+      if: ${{ github.event.inputs.globalmapper == 'true' }}
       run: |
         Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install_globalmapper.ps1').Content
 
