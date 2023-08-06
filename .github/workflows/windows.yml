@@ -71,26 +71,31 @@ jobs:
       if: ${{ github.event.inputs.office == 'true' }}
       run: |
         choco install office365business | Out-Null
+      continue-on-error: true
 
     - name: Install QGIS.
       if: ${{ github.event.inputs.qgis == 'true' }}
       run: |
         choco install qgis | Out-Null
+      continue-on-error: true
 
     - name: Install Inkscape.
       if: ${{ github.event.inputs.inkscape == 'true' }}
       run: |
         choco install inkscape | Out-Null
+      continue-on-error: true
 
     - name: Installing ArcGIS
       if: ${{ github.event.inputs.arcgis == 'true' }}
       run: |
         Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install_arcgis.ps1').Content
+      continue-on-error: true
 
     - name: Installing Global Mapper
       if: ${{ github.event.inputs.globalmapper == 'true' }}
       run: |
         Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install_globalmapper.ps1').Content
+      continue-on-error: true
 
     - name: Setup TMATE session
       uses: mxschmitt/action-tmate@v3
