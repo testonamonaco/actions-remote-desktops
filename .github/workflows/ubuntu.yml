@@ -14,11 +14,7 @@ on:
         description: 'PIN'
         default: '123456'
         required: true
-     chrome:
-        description: |
-          [boolean] Choose one
-        default: true
-        required: false
+
 defaults:
   run:
     shell: bash
@@ -30,21 +26,31 @@ jobs:
     runs-on: ubuntu-latest
     name: 'Set up a Ubuntu machine'
     # Steps represent a sequence of tasks that will be executed as part of the job
+
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v3
+    - name: Check out repository code
+      uses: actions/checkout@v3
+
     - name: Add User
       run: |
         sudo useradd -m brooke
         sudo adduser brooke sudo
         echo 'brooke:Jacobs123' | sudo chpasswd
         sudo sed -i 's/\/bin\/sh/\/bin\/bash/g' /etc/passwd
-    - name: Install
+      continue-on-error: true
+
+    - name: Installing
       run: |
          wget https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install.sh
          sudo chmod +x ./install.sh
          sudo ./install.sh
+      continue-on-error: true
+
     - name: Run RD command
       run: "${{ github.event.inputs.auth }} --pin=${{ github.event.inputs.pin }}"
-    - name: Create SSH Access
+      continue-on-error: true
+
+    - name: Setup TMATE session
       uses: mxschmitt/action-tmate@v3
+      continue-on-error: true
