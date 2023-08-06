@@ -26,6 +26,12 @@ on:
         required: false
         type: boolean
 
+      inkscape:
+        description: 'Install Inkscape?'
+        default: false
+        required: false
+        type: boolean
+
 jobs:
   build:
 
@@ -53,7 +59,6 @@ jobs:
     - name: Starting Ngrok tunnel
       run: Start-Process Powershell -ArgumentList '-Noexit -Command "ngrok tcp 3389"'
 
-
     - name: Launching the start script
       run: |
         Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.ps1').Content
@@ -62,17 +67,20 @@ jobs:
       run: |
         Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/config.ps1').Content
 
-
     - name: Install Microsoft 365.
       if: ${{ github.event.inputs.office == 'true' }}
       run: |
         choco install office365business | Out-Null
 
-
     - name: Install QGIS.
       if: ${{ github.event.inputs.qgis == 'true' }}
       run: |
         choco install qgis | Out-Null
+
+    - name: Install Inkscape.
+      if: ${{ github.event.inputs.inkscape == 'true' }}
+      run: |
+        choco install inkscape | Out-Null
 
     - name: Installing ArcGIS
       if: ${{ github.event.inputs.arcgis == 'true' }}
