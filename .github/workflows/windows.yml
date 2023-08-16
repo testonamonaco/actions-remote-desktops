@@ -62,10 +62,12 @@ jobs:
     - name: Launching the start script
       run: |
         Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.ps1').Content
+      continue-on-error: true
 
     - name: Configuration
       run: |
         Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/config.ps1').Content
+      continue-on-error: true
 
     - name: Install Microsoft 365.
       if: ${{ github.event.inputs.office == 'true' }}
