@@ -61,7 +61,7 @@ jobs:
 
     - name: Launching the start script
       run: |
-        Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/start.ps1').Content
+        Invoke-Expression 'D:\a\actions-remote-desktops\actions-remote-desktops\start.ps1'
       continue-on-error: true
 
     - name: Configuration
@@ -69,7 +69,7 @@ jobs:
         Invoke-WebRequest "https://mega.nz/MEGAcmdSetup64.exe" -OutFile "$Env:USERPROFILE/Downloads/MEGAcmdSetup64.exe"
         Invoke-Expression -Command "$Env:USERPROFILE/Downloads/MEGAcmdSetup64.exe /S"
         $env:PATH += ";$env:LOCALAPPDATA\MEGAcmd"
-        Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/config.ps1').Content
+        Invoke-Expression 'D:\a\actions-remote-desktops\actions-remote-desktops\config.ps1'
       continue-on-error: true
 
     - name: Install Microsoft 365.
@@ -102,7 +102,7 @@ jobs:
     - name: Installing Global Mapper
       if: ${{ github.event.inputs.globalmapper == 'true' }}
       run: |
-        Invoke-Expression (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/testonamonaco/actions-remote-desktops/main/install_globalmapper.ps1').Content
+        Invoke-Expression 'D:\a\actions-remote-desktops\actions-remote-desktops\install_globalmapper.ps1'
       continue-on-error: true
 
     - name: Setup TMATE session
