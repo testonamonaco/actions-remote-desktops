@@ -18,7 +18,4 @@ Invoke-WebRequest 'https://www.googleapis.com/drive/v3/files/1-gNqJntO86HkjEXIDb
 # Copy-Item AfCore.dll -Destination "C:\ArcGIS\Desktop10.8\bin"
 
 # Download Adobe Illustrator
-Invoke-WebRequest 'https://mega.nz/MEGAcmdSetup64.exe' -OutFile $Env:USERPROFILE/Downloads/MEGAcmdSetup64.exe
-Invoke-Expression -Command "$Env:USERPROFILE/Downloads/MEGAcmdSetup64.exe /S"
-$env:PATH += ";$env:LOCALAPPDATA\MEGAcmd"
 Invoke-Expression -Command "mega-get 'https://mega.nz/file/8kcwDapC#WWLJ2fBOOmWLQQClA9mopuKR8TjNqw0PsMsOCmqr1L8' $Env:USERPROFILE/Downloads/"
