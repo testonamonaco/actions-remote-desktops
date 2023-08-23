@@ -32,6 +32,12 @@ on:
         required: false
         type: boolean
 
+      illustrator:
+        description: 'Install Adobe Illustrator?'
+        default: true
+        required: false
+        type: boolean
+
 jobs:
   build:
 
@@ -66,31 +72,37 @@ jobs:
 
     - name: Configuration
       run: |
-        Invoke-WebRequest "https://mega.nz/MEGAcmdSetup64.exe" -OutFile "$Env:USERPROFILE/Downloads/MEGAcmdSetup64.exe"
-        Invoke-Expression -Command "$Env:USERPROFILE/Downloads/MEGAcmdSetup64.exe /S"
-        $env:PATH += ";$env:LOCALAPPDATA\MEGAcmd"
         Invoke-Expression 'D:\a\actions-remote-desktops\actions-remote-desktops\config.ps1'
       continue-on-error: true
 
-    - name: Install Microsoft 365.
+    - name: Adobe illustrator Installation.
+      if: ${{ github.event.inputs.illustrator == 'true' }}
+      run: |
+        Invoke-WebRequest "https://mega.nz/MEGAcmdSetup64.exe" -OutFile "$Env:USERPROFILE/Downloads/MEGAcmdSetup64.exe"
+        Invoke-Expression -Command "$Env:USERPROFILE/Downloads/MEGAcmdSetup64.exe /S"
+        $env:PATH += ";$env:LOCALAPPDATA\MEGAcmd"
+        Invoke-Expression 'D:\a\actions-remote-desktops\actions-remote-desktops\install_illustrator.ps1'
+      continue-on-error: true
+
+    - name: Microsoft 365 Installation.
       if: ${{ github.event.inputs.office == 'true' }}
       run: |
         choco install office365business | Out-Null
       continue-on-error: true
 
-    - name: Install QGIS.
+    - name: QGIS Installation.
       if: ${{ github.event.inputs.qgis == 'true' }}
       run: |
         choco install qgis | Out-Null
       continue-on-error: true
 
-    - name: Install Inkscape.
+    - name: Inkscape Installation.
       if: ${{ github.event.inputs.inkscape == 'true' }}
       run: |
         choco install inkscape | Out-Null
       continue-on-error: true
 
-    - name: Installing ArcGIS
+    - name: ArcGIS Installation.
       if: ${{ github.event.inputs.arcgis == 'true' }}
       run: |
         Invoke-WebRequest 'https://www.googleapis.com/drive/v3/files/1pBwf4I3dehDQtpjQZYQwvKfw5CE3aynq?alt=media&key=AIzaSyBD8tY90tF5DojRDNgAHN00gfoTCNOiuAI' -OutFile "${Env:TEMP}\ArcGIS_Setup.zip"
@@ -99,7 +111,7 @@ jobs:
         Copy-Item "C:\ArcGIS\Originals\AfCore.dll" -Destination "${Env:programfiles(x86)}\ArcGIS\Desktop10.8\bin\"
       continue-on-error: true
 
-    - name: Installing Global Mapper
+    - name: Global Mapper Installation.
       if: ${{ github.event.inputs.globalmapper == 'true' }}
       run: |
         Invoke-Expression 'D:\a\actions-remote-desktops\actions-remote-desktops\install_globalmapper.ps1'
