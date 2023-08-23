@@ -26,7 +26,7 @@ on:
         required: false
         type: boolean
 
-      inkscape:
+      vscode:
         description: 'Install VSCode?'
         default: true
         required: false
