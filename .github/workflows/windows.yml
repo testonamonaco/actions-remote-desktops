@@ -27,6 +27,12 @@ on:
         type: boolean
 
       inkscape:
+        description: 'Install VSCode?'
+        default: true
+        required: false
+        type: boolean
+
+      inkscape:
         description: 'Install Inkscape?'
         default: false
         required: false
@@ -75,6 +81,18 @@ jobs:
         Invoke-Expression 'D:\a\actions-remote-desktops\actions-remote-desktops\config.ps1'
       continue-on-error: true
 
+    - name: VSCode Installation.
+      if: ${{ github.event.inputs.vscode == 'true' }}
+      run: |
+        choco install vscode | Out-Null
+      continue-on-error: true
+
+    - name: Inkscape Installation.
+      if: ${{ github.event.inputs.inkscape == 'true' }}
+      run: |
+        choco install inkscape | Out-Null
+      continue-on-error: true
+
     - name: Adobe illustrator Installation.
       if: ${{ github.event.inputs.illustrator == 'true' }}
       run: |
@@ -94,12 +112,6 @@ jobs:
       if: ${{ github.event.inputs.qgis == 'true' }}
       run: |
         choco install qgis | Out-Null
-      continue-on-error: true
-
-    - name: Inkscape Installation.
-      if: ${{ github.event.inputs.inkscape == 'true' }}
-      run: |
-        choco install inkscape | Out-Null
       continue-on-error: true
 
     - name: ArcGIS Installation.
